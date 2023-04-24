@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public struct NameSpaceWrapper<Base> {
     public let base: Base
@@ -32,3 +33,9 @@ public extension NameSpaceCompatibleValue {
         }
     }
 }
+
+extension Int: NameSpaceCompatibleValue {}
+extension String: NameSpaceCompatibleValue {}
+extension UIColor: NameSpaceCompatibleObjct {}
+extension UIView: NameSpaceCompatibleObjct {}
+extension UIViewController: NameSpaceCompatibleObjct {}

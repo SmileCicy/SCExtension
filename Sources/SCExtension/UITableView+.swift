@@ -56,5 +56,8 @@ public extension UITableView {
         t.separatorStyle = .none
         t.showsVerticalScrollIndicator = false
         t.contentInsetAdjustmentBehavior = .never
+        if #available(iOS 15.0, *) {
+            t.sectionHeaderTopPadding = 0
+        }
     }
 }

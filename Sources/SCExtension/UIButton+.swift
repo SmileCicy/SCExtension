@@ -23,8 +23,20 @@ public extension NameSpaceWrapper where Base: UIButton {
     }
     
     @discardableResult
-    func image(_ image: String, _ state: UIControl.State = .normal) -> Base {
+    func image(_ image: UIImage?, _ state: UIControl.State = .normal) -> Base {
+        self.base.setImage(image, for: state)
+        return self.base
+    }
+    
+    @discardableResult
+    func imageName(_ image: String, _ state: UIControl.State = .normal) -> Base {
         self.base.setImage(UIImage(named: image), for: state)
+        return self.base
+    }
+    
+    @discardableResult
+    func bgImageName(_ imageName: String, state: UIControl.State = .normal) -> Base {
+        self.base.setBackgroundImage(UIImage(named: imageName), for: state)
         return self.base
     }
     
@@ -37,6 +49,12 @@ public extension NameSpaceWrapper where Base: UIButton {
     @discardableResult
     func font(_ font: UIFont) -> Base {
         self.base.titleLabel?.font = font
+        return self.base
+    }
+    
+    @discardableResult
+    func adjustFont(_ adjust: Bool = true) -> Base {
+        self.base.titleLabel?.adjustsFontSizeToFitWidth = adjust
         return self.base
     }
     
@@ -61,6 +79,31 @@ public extension NameSpaceWrapper where Base: UIButton {
     @discardableResult
     func isSelected(_ selected: Bool) -> Base {
         self.base.isSelected = selected
+        return self.base
+    }
+    
+    @discardableResult
+    func imagePadding(_ value: CGFloat) -> Base {
+        self.base.titleEdgeInsets = UIEdgeInsets(top: 0, left: value, bottom: 0, right: 0)
+        self.base.imageEdgeInsets = UIEdgeInsets(top: 0, left: -value, bottom: 0, right: 0)
+        return self.base
+    }
+    
+    @discardableResult
+    func add(_ target: Any?, action: Selector, event: UIControl.Event = .touchUpInside) -> Base {
+        self.base.addTarget(target, action: action, for: event)
+        return self.base
+    }
+    
+    @discardableResult
+    func switchImageAndText() -> Base {
+        self.base.semanticContentAttribute = .forceRightToLeft
+        return self.base
+    }
+    
+    @discardableResult
+    func semanticContent(_ attr: UISemanticContentAttribute) -> Base {
+        self.base.semanticContentAttribute = attr
         return self.base
     }
 }

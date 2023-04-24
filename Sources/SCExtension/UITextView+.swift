@@ -41,6 +41,12 @@ public extension NameSpaceWrapper where Base: UITextView {
     }
     
     @discardableResult
+    func returnKey(_ type: UIReturnKeyType) -> Base {
+        self.base.returnKeyType = type
+        return self.base
+    }
+    
+    @discardableResult
     func textInset(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat? = nil, _ right: CGFloat? = nil) -> Base {
         self.base.textContainerInset = UIEdgeInsets(top: top, left: left, bottom: bottom ?? top, right: right ?? left)
         return self.base

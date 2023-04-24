@@ -7,22 +7,21 @@
 
 import Foundation
 import CommonCrypto
+import CryptoKit
 import UIKit
 
-extension String: NameSpaceCompatibleValue {}
 public extension NameSpaceWrapper where Base == String {
     func md5(_ uppercase: Bool = false) -> String {
-        let utf8 = self.base.cString(using: .utf8)
-        var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
-        CC_MD5(utf8, CC_LONG(utf8!.count - 1), &digest)
         if uppercase {
-            return digest.reduce("") {
-                $0 + String(format:"%02X", $1)
-            }
+            return Insecure.MD5.hash(data: self.base.data(using: .utf8)!)
+                .map { item in
+                    return String(format: "%02X", item)
+                }.joined()
         }else {
-            return digest.reduce("") {
-                $0 + String(format:"%02x", $1)
-            }
+            return Insecure.MD5.hash(data: self.base.data(using: .utf8)!)
+                .map { item in
+                    return String(format: "%02x", item)
+                }.joined()
         }
     }
     
@@ -41,13 +40,13 @@ public extension NameSpaceWrapper where Base == String {
         if hexString.hasPrefix("#") {
             hexString = String(hexString.dropFirst())
         }
-        let scanner = Scanner(string: hexString)
-        scanner.scanLocation = 0
-        var rgbValue: UInt32 = 0
-        scanner.scanHexInt32(&rgbValue)
+        var rgbValue: UInt64 = 0
+        Scanner(string: hexString).scanHexInt64(&rgbValue)
+        
         let red = CGFloat((rgbValue & 0xff0000) >> 16) / 0xff
         let green = CGFloat((rgbValue & 0xff00) >> 8) / 0xff
         let blue = CGFloat(rgbValue & 0xff) / 0xff
+        
         return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }

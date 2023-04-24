@@ -17,13 +17,29 @@ public extension NameSpaceWrapper where Base: UIImageView {
     }
     
     @discardableResult
-    func image(_ name: String) -> Base {
-        self.base.image = UIImage(named: name)
+    func image(_ image: UIImage?) -> Base {
+        self.base.image = image
         return self.base
     }
     
     @discardableResult
-    func isUser(_ valid: Bool = true) -> Base {
+    func imageData(_ data: Data) -> Base {
+        self.base.image = UIImage(data: data)
+        return self.base
+    }
+    
+    @discardableResult
+    func imageName(_ name: String?) -> Base {
+        if let name {
+            self.base.image = UIImage(named: name)
+        }else {
+            self.base.image = nil
+        }
+        return self.base
+    }
+    
+    @discardableResult
+    func isUserEnabled(_ valid: Bool = true) -> Base {
         self.base.isUserInteractionEnabled = valid
         return self.base
     }

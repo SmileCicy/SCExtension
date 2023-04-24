@@ -17,6 +17,12 @@ public extension NameSpaceWrapper where Base: UITextField {
     }
     
     @discardableResult
+    func tintColor(_ color: UIColor) -> Base {
+        self.base.tintColor = color
+        return self.base
+    }
+    
+    @discardableResult
     func color(_ color: UIColor) -> Base {
         self.base.textColor = color
         return self.base
@@ -25,6 +31,12 @@ public extension NameSpaceWrapper where Base: UITextField {
     @discardableResult
     func font(_ font: UIFont) -> Base {
         self.base.font = font
+        return self.base
+    }
+    
+    @discardableResult
+    func alignment(_ alignment: NSTextAlignment) -> Base {
+        self.base.textAlignment = alignment
         return self.base
     }
     
@@ -56,8 +68,14 @@ public extension NameSpaceWrapper where Base: UITextField {
     }
     
     @discardableResult
-    func userInteraction(_ enable: Bool) -> Base {
-        self.base.isUserInteractionEnabled = enable
+    func isUserEnabled(_ valid: Bool) -> Base {
+        self.base.isUserInteractionEnabled = valid
+        return self.base
+    }
+    
+    @discardableResult
+    func delegate(_ target: UITextFieldDelegate) -> Base {
+        self.base.delegate = target
         return self.base
     }
 }

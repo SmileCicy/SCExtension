@@ -28,7 +28,7 @@ public extension NameSpaceWrapper where Base: UIProgressView {
     }
     
     @discardableResult
-    func setprogress(_ value: Float, _ animated: Bool = true) -> Base {
+    func setProgress(_ value: Float, _ animated: Bool = true) -> Base {
         self.base.setProgress(value, animated: animated)
         return self.base
     }

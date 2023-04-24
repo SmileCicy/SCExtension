@@ -9,10 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-extension UIView: NameSpaceCompatibleObjct {}
-
 public extension NameSpaceWrapper where Base: UIControl {
-    
     @discardableResult
     func add(_ target: Any?, _ action: Selector, _ event: UIControl.Event = .touchUpInside) -> Base {
         self.base.addTarget(target, action: action, for: event)
@@ -21,7 +18,6 @@ public extension NameSpaceWrapper where Base: UIControl {
 }
 
 public extension NameSpaceWrapper where Base: UIView {
-    
     @discardableResult
     func config(_ config: (Base) -> Void) -> Base {
         config(self.base)
@@ -45,7 +41,7 @@ public extension NameSpaceWrapper where Base: UIView {
     }
     
     @discardableResult
-    func updateconstraints(_ snpMaker: (ConstraintMaker) -> Void) -> Base {
+    func updateConstraints(_ snpMaker: (ConstraintMaker) -> Void) -> Base {
         self.base.snp.updateConstraints { make in
             snpMaker(make)
         }
@@ -53,33 +49,38 @@ public extension NameSpaceWrapper where Base: UIView {
     }
     
     @discardableResult
-    func bgColor(_ value: UIColor) -> Base {
-        self.base.backgroundColor = value
+    func bgColor(_ color: UIColor) -> Base {
+        self.base.backgroundColor = color
         return self.base
     }
     
     @discardableResult
-    func alpha(_ value: CGFloat) -> Base {
-        self.base.alpha = value
+    func alpha(_ alpha: CGFloat) -> Base {
+        self.base.alpha = alpha
         return self.base
     }
     
     @discardableResult
-    func isHidden(_ value: Bool = true) -> Base {
-        self.base.isHidden = value
+    func isHidden(_ isHidden: Bool) -> Base {
+        self.base.isHidden = isHidden
         return self.base
     }
     
     @discardableResult
-    func corner(_ corner: CGFloat,_ mask: Bool = true) -> Base {
+    func corner(_ corner: CGFloat) -> Base {
         self.base.layer.cornerRadius = corner
-        self.base.layer.masksToBounds = mask
-        self.base.clipsToBounds = mask
         return self.base
     }
     
     @discardableResult
-    func cornersMask(_ corners: CACornerMask) -> Base {
+    func clip(_ clip: Bool = true) -> Base {
+        self.base.clipsToBounds = clip
+        self.base.layer.masksToBounds = clip
+        return self.base
+    }
+    
+    @discardableResult
+    func maskCorners(_ corners: CACornerMask) -> Base {
         self.base.layer.maskedCorners = corners
         return self.base
     }
@@ -121,31 +122,16 @@ public extension NameSpaceWrapper where Base: UIView {
     }
     
     @discardableResult
-    func clip(_ clip: Bool) -> Base {
-        self.base.clipsToBounds = clip
-        self.base.layer.masksToBounds = clip
-        return self.base
-    }
-    
-    @discardableResult
-    func addsubviews<T: UIView>(_ subs: T...) -> Base {
-        subs.forEach { sub in
-            self.base.addSubview(sub)
-        }
-        return self.base
-    }
-    
-    @discardableResult
-    func addsubviews<T: UIView>(_ subs: [T]) -> Base {
-        subs.forEach { sub in
-            self.base.addSubview(sub)
-        }
-        return self.base
-    }
-    
-    @discardableResult
     func tag(_ tag: Int) -> Base {
         self.base.tag = tag
+        return self.base
+    }
+    
+    @discardableResult
+    func addSubviews<T: UIView>(_ subs: T...) -> Base {
+        subs.forEach { s in
+            self.base.addSubview(s)
+        }
         return self.base
     }
 }

@@ -9,7 +9,6 @@ import Foundation
 import UIKit
 import SwiftDate
 
-extension Int: NameSpaceCompatibleValue {}
 public extension NameSpaceWrapper where Base == Int {
     var date: DateInRegion {
         return Date(timeIntervalSince1970: TimeInterval(self.base)).convertTo(region: .current)
