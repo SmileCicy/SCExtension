@@ -21,6 +21,12 @@ public extension NameSpaceWrapper where Base: UITextView {
         self.base.textColor = color
         return self.base
     }
+    
+    @discardableResult
+    func color(_ colorHex: String) -> Base {
+        self.base.textColor = colorHex.sc.color()
+        return self.base
+    }
 
     @discardableResult
     func font(_ font: UIFont) -> Base {

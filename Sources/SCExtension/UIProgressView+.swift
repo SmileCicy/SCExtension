@@ -16,8 +16,20 @@ public extension NameSpaceWrapper where Base: UIProgressView {
     }
     
     @discardableResult
+    func trackColor(_ colorHex: String) -> Base {
+        self.base.trackTintColor = colorHex.sc.color()
+        return self.base
+    }
+    
+    @discardableResult
     func progressColor(_ color: UIColor) -> Base {
         self.base.progressTintColor = color
+        return self.base
+    }
+    
+    @discardableResult
+    func progressColor(_ colorHex: String) -> Base {
+        self.base.progressTintColor = colorHex.sc.color()
         return self.base
     }
     

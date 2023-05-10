@@ -23,8 +23,20 @@ public extension NameSpaceWrapper where Base: UITextField {
     }
     
     @discardableResult
+    func tintColor(_ colorHex: String) -> Base {
+        self.base.tintColor = colorHex.sc.color()
+        return self.base
+    }
+    
+    @discardableResult
     func color(_ color: UIColor) -> Base {
         self.base.textColor = color
+        return self.base
+    }
+    
+    @discardableResult
+    func color(_ colorHex: String) -> Base {
+        self.base.textColor = colorHex.sc.color()
         return self.base
     }
     
@@ -45,6 +57,15 @@ public extension NameSpaceWrapper where Base: UITextField {
         self.base.attributedPlaceholder = NSAttributedString(string: text, attributes: [
             .font: font,
             .foregroundColor: color
+        ])
+        return self.base
+    }
+    
+    @discardableResult
+    func placeHolder(_ text: String,_ colorHex: String,_ font: UIFont) -> Base {
+        self.base.attributedPlaceholder = NSAttributedString(string: text, attributes: [
+            .font: font,
+            .foregroundColor: colorHex.sc.color()
         ])
         return self.base
     }

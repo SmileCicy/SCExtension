@@ -21,6 +21,7 @@ public extension NameSpaceWrapper where Base: UIStackView {
         return self.base
     }
     
+    @discardableResult
     func spacing(_ spacing: CGFloat) -> Base {
         self.base.spacing = spacing
         return self.base

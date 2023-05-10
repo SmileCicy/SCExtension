@@ -39,6 +39,12 @@ public extension NameSpaceWrapper where Base: UILabel {
         self.base.textColor = color
         return self.base
     }
+    
+    @discardableResult
+    func color(_ colorHex: String) -> Base {
+        self.base.textColor = colorHex.sc.color()
+        return self.base
+    }
 
     @discardableResult
     func number(_ number: Int) -> Base {

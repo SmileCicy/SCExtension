@@ -55,6 +55,12 @@ public extension NameSpaceWrapper where Base: UIView {
     }
     
     @discardableResult
+    func bgColor(_ colorHex: String) -> Base {
+        self.base.backgroundColor = colorHex.sc.color()
+        return self.base
+    }
+    
+    @discardableResult
     func alpha(_ alpha: CGFloat) -> Base {
         self.base.alpha = alpha
         return self.base
@@ -92,6 +98,12 @@ public extension NameSpaceWrapper where Base: UIView {
     }
     
     @discardableResult
+    func shadowColor(_ colorHex: String) -> Base {
+        self.base.layer.shadowColor = colorHex.sc.color().cgColor
+        return self.base
+    }
+    
+    @discardableResult
     func shadowOffset(_ offset: CGSize) -> Base {
         self.base.layer.shadowOffset = offset
         return self.base
@@ -112,6 +124,12 @@ public extension NameSpaceWrapper where Base: UIView {
     @discardableResult
     func borderColor(_ color: UIColor) -> Base {
         self.base.layer.borderColor = color.cgColor
+        return self.base
+    }
+    
+    @discardableResult
+    func borderColor(_ colorHex: String) -> Base {
+        self.base.layer.borderColor = colorHex.sc.color().cgColor
         return self.base
     }
     

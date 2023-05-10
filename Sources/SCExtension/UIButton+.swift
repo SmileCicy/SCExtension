@@ -47,6 +47,12 @@ public extension NameSpaceWrapper where Base: UIButton {
     }
     
     @discardableResult
+    func color(_ colorHex: String, _ state: UIControl.State = .normal) -> Base {
+        self.base.setTitleColor(colorHex.sc.color(), for: state)
+        return self.base
+    }
+    
+    @discardableResult
     func font(_ font: UIFont) -> Base {
         self.base.titleLabel?.font = font
         return self.base
