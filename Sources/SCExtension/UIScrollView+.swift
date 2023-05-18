@@ -46,4 +46,22 @@ public extension NameSpaceWrapper where Base: UIScrollView {
         return self.base
     }
     
+    @discardableResult
+    func contentSize(_ value: CGSize) -> Base {
+        self.base.contentSize = value
+        return self.base
+    }
+    
+    @discardableResult
+    func contentOffset(_ value: CGPoint) -> Base {
+        self.base.contentOffset = value
+        return self.base
+    }
+    
+    @discardableResult
+    func setOffset(_ value: CGPoint, animated: Bool) -> Base {
+        self.base.setContentOffset(value, animated: animated)
+        return self.base
+    }
+    
 }
