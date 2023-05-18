@@ -22,4 +22,28 @@ public extension NameSpaceWrapper where Base: UIScrollView {
         return self.base
     }
     
+    @discardableResult
+    func showH(_ valid: Bool) -> Base {
+        self.base.showsHorizontalScrollIndicator = valid
+        return self.base
+    }
+    
+    @discardableResult
+    func showV(_ valid: Bool) -> Base {
+        self.base.showsVerticalScrollIndicator = valid
+        return self.base
+    }
+    
+    @discardableResult
+    func maxZoomScale(_ value: CGFloat) -> Base {
+        self.base.maximumZoomScale = value
+        return self.base
+    }
+    
+    @discardableResult
+    func minZoomScale(_ value: CGFloat) -> Base {
+        self.base.minimumZoomScale = value
+        return self.base
+    }
+    
 }
