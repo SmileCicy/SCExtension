@@ -12,17 +12,29 @@ import UIKit
 
 public extension NameSpaceWrapper where Base == String {
     func md5(_ uppercase: Bool = false) -> String {
-        if uppercase {
-            return Insecure.MD5.hash(data: self.base.data(using: .utf8)!)
-                .map { item in
-                    return String(format: "%02X", item)
-                }.joined()
-        }else {
-            return Insecure.MD5.hash(data: self.base.data(using: .utf8)!)
-                .map { item in
-                    return String(format: "%02x", item)
-                }.joined()
+        if #available(iOS 13.0, *) {
+            if uppercase {
+                return Insecure.MD5.hash(data: self.base.data(using: .utf8)!)
+                    .map { item in
+                        return String(format: "%02X", item)
+                    }.joined()
+            }else {
+                return Insecure.MD5.hash(data: self.base.data(using: .utf8)!)
+                    .map { item in
+                        return String(format: "%02x", item)
+                    }.joined()
+            }
+        } else {
+            let utf8 = self.base.cString(using: .utf8)
+            var digest = [UInt8](repeating: 0, count: Int(CC_MD5_DIGEST_LENGTH))
+            CC_MD5(utf8, CC_LONG(strlen(utf8!)), &digest)
+            if uppercase {
+                return digest.reduce("", { $0 + String(format: "%02X", $1)})
+            }else {
+                return digest.reduce("", { $0 + String(format: "%02x", $1)})
+            }
         }
+        
     }
     
     func partAttr(_ sub: String, _ attr: [NSAttributedString.Key: Any], _ subAttr: [NSAttributedString.Key: Any]) -> NSAttributedString {
