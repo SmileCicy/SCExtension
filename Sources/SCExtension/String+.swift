@@ -44,6 +44,10 @@ public extension NameSpaceWrapper where Base == String {
         return attr
     }
     
+    func attr(_ attr: [NSAttributedString.Key: Any]) -> NSAttributedString {
+        return NSAttributedString(string: self.base, attributes: attr)
+    }
+    
     func color(_ alpha: CGFloat = 1.0) -> UIColor {
         guard self.base.count >= 6 else {
             return UIColor.clear
