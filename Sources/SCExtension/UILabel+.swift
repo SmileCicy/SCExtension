@@ -63,28 +63,4 @@ public extension NameSpaceWrapper where Base: UILabel {
         self.base.textAlignment = alignment
         return self.base
     }
-    
-    @discardableResult
-    func hContentCompression(_ value: Float) -> Base {
-        self.base.setContentCompressionResistancePriority(UILayoutPriority(rawValue: value), for: .horizontal)
-        return self.base
-    }
-    
-    @discardableResult
-    func vContentCompression(_ value: Float) -> Base {
-        self.base.setContentCompressionResistancePriority(UILayoutPriority(rawValue: value), for: .vertical)
-        return self.base
-    }
-    
-    @discardableResult
-    func hContentHugging(_ value: Float) -> Base {
-        self.base.setContentHuggingPriority(UILayoutPriority(rawValue: value), for: .horizontal)
-        return self.base
-    }
-    
-    @discardableResult
-    func vContentHugging(_ value: Float) -> Base {
-        self.base.setContentHuggingPriority(UILayoutPriority(rawValue: value), for: .vertical)
-        return self.base
-    }
 }
